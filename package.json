@@ -1,0 +1,30 @@
+{
+	"name": "wigglep1ne.github.io",
+	"version": "0.0.2",
+	"description": "small website to share what cross my mind",
+	"license": "GPL-3.0-only",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"homepage": "https://github.com/wigglep1ne/wigglep1ne.github.io#readme",
+	"bugs": {
+		"url": "https://github.com/wigglep1ne/wigglep1ne.github.io/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wigglep1ne/wigglep1ne.github.io.git"
+	},
+	"author": {
+		"name": "wigglep1ne",
+		"email": "hi@wigglep1ne.com"
+	},
+	"type": "module",
+	"main": "index.js",
+	"keywords": [
+		"hugo",
+		"nodejs",
+		"typescript",
+		"tailwind",
+		"aboutme"
+	]
+}
