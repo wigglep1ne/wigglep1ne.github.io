@@ -1,6 +1,22 @@
 # Changelog
 
-## [0.1.1] — 2026-06-27
+## [0.1.0] — 2026-10-08
+
+### Added
+
+- GitHub Actions workflow to build and deploy the Hugo site to GitHub Pages on pushes to `main`
+- Automated Pages deployment pipeline with Hugo build, artifact upload, and GitHub Pages publish
+- Manual workflow trigger support for redeploying the site without a push
+
+### Changed
+
+- Site deployment process moved to a CI/CD pipeline for consistent production builds
+
+### Fixed
+
+- Ensured Hugo builds are generated through the same production workflow used for deployment
+
+## [0.0.2] — 2026-06-27
 
 ### Added
 
@@ -12,7 +28,7 @@
 - External CSS via Hugo Pipes with minification and fingerprinting
 - Dark mode pre-load script for no-flash theme switching
 
-## [0.1.0] — 2026-06-27
+## [0.0.1] — 2026-06-27
 
 ### Added
 
