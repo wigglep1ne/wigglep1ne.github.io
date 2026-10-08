@@ -1,0 +1,10 @@
+{{ $paginator := .paginator }}
+{{ if $paginator.Pages }}
+  <div class="post-list" data-post-listing>
+    {{ range $paginator.Pages }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+{{ else }}
+  <p class="empty-posts">No publications yet.</p>
+{{ end }}

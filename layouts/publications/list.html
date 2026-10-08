@@ -1,0 +1,16 @@
+{{ define "main" }}
+<section class="post-section">
+  {{ partial "post-submenu.html" . }}
+  {{ partial "post-search.html" . }}
+
+  <header class="post-section-header">
+    <p class="post-kicker">Writing and research notes</p>
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+  </header>
+
+  {{ $paginator := .Paginate (.RegularPages.ByDate.Reverse) }}
+  {{ partial "post-list.html" (dict "paginator" $paginator) }}
+  {{ partial "pagination.html" (dict "paginator" $paginator) }}
+</section>
+{{ end }}

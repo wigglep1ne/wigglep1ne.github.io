@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section class="post-section">
+  {{ partial "post-submenu.html" . }}
+  {{ partial "post-search.html" . }}
+
+  <header class="post-section-header">
+    <p class="post-kicker">{{ .Data.Singular | title }}</p>
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  {{ $paginator := .Paginate (.Pages.ByDate.Reverse) }}
+  {{ partial "post-list.html" (dict "paginator" $paginator) }}
+  {{ partial "pagination.html" (dict "paginator" $paginator) }}
+</section>
+{{ end }}

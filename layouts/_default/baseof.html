@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Locale }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  {{ partial "header.html" . }}
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  <script>
+    function toggleTheme(){
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+      updateBtn();
+    }
+    function updateBtn(){
+      const btn = document.querySelector('.theme-btn');
+      if (btn) btn.textContent = document.documentElement.classList.contains('dark') ? '☀' : '☾';
+    }
+    updateBtn();
+  </script>
+</body>
+</html>

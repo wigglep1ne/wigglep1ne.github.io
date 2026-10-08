@@ -1,0 +1,14 @@
+{{ with .Params.categories }}
+  <p class="post-taxonomies"><span>Categories:</span>
+    {{ range $index, $category := . }}
+      {{ if $index }}, {{ end }}<a href="{{ printf "categories/%s/" ($category | urlize) | relURL }}">{{ $category }}</a>
+    {{ end }}
+  </p>
+{{ end }}
+{{ with .Params.tags }}
+  <p class="post-taxonomies"><span>Tags:</span>
+    {{ range $index, $tag := . }}
+      {{ if $index }}, {{ end }}<a href="{{ printf "tags/%s/" ($tag | urlize) | relURL }}">{{ $tag }}</a>
+    {{ end }}
+  </p>
+{{ end }}

@@ -1,0 +1,36 @@
+baseURL = "https://wigglep1ne.dev"
+locale = "en-us"
+title = "wigglep1ne | About me"
+
+[params]
+  author = "wigglep1ne"
+  email = "hi@wigglep1ne.dev"
+  description = "wigglep1ne - Enthusiast"
+
+  # Umami analytics
+  umamiScriptUrl = "https://analytics.4686189.xyz/script.js"
+  umamiWebsiteId = "538d347a-5581-4faf-a235-e7f18c08234b"
+
+  # Social
+  github = "https://github.com/wigglep1ne"
+  linkedin = "https://linkedin.com/in/wigglep1ne"
+  twitter = "https://twitter.com/wigglep1ne"
+  reddit = "https://reddit.com/user/wigglep1ne"
+
+  # Contact form
+  contactPostUrl = "https://formbold.com/s/9xVjE"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[pagination]
+  pagerSize = 5

@@ -1,0 +1,15 @@
+<footer>
+  {{ $social := slice }}
+  {{ with $.Site.Params.github }}{{ $social = $social | append (dict "name" "GitHub" "url" .) }}{{ end }}
+  {{ with $.Site.Params.linkedin }}{{ $social = $social | append (dict "name" "LinkedIn" "url" .) }}{{ end }}
+  {{ with $.Site.Params.twitter }}{{ $social = $social | append (dict "name" "Twitter" "url" .) }}{{ end }}
+  {{ with $.Site.Params.reddit }}{{ $social = $social | append (dict "name" "Reddit" "url" .) }}{{ end }}
+  {{ if $social }}
+  <nav style="display:flex;justify-content:center;gap:1rem;margin-bottom:.5rem;">
+    {{ range $social }}
+    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" style="color:var(--fg);text-decoration:none;font-size:.85rem;">{{ .name }}</a>
+    {{ end }}
+  </nav>
+  {{ end }}
+  <p>&copy; {{ now.Year }} {{ .Site.Params.author }}. All rights reserved.</p>
+</footer>

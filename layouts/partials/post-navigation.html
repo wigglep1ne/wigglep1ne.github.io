@@ -1,0 +1,16 @@
+{{ if or .PrevInSection .NextInSection }}
+  <nav class="post-navigation" aria-label="Publication navigation">
+    {{ with .PrevInSection }}
+      <a class="post-navigation-link post-navigation-previous" rel="prev" href="{{ .RelPermalink }}">
+        <span>Previous publication</span>
+        <strong>{{ .LinkTitle }}</strong>
+      </a>
+    {{ end }}
+    {{ with .NextInSection }}
+      <a class="post-navigation-link post-navigation-next" rel="next" href="{{ .RelPermalink }}">
+        <span>Next publication</span>
+        <strong>{{ .LinkTitle }}</strong>
+      </a>
+    {{ end }}
+  </nav>
+{{ end }}

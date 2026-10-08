@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="post-page">
+  {{ partial "post-submenu.html" . }}
+  {{ partial "post-search.html" . }}
+
+  <header class="post-header">
+    <p class="post-kicker">Article</p>
+    <h1>{{ .Title }}</h1>
+    <div class="post-meta">
+      {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{ end }}
+      {{ if .Draft }}<span class="post-draft">Draft</span>{{ end }}
+    </div>
+    {{ partial "post-taxonomies.html" . }}
+  </header>
+
+  <div class="post-layout">
+    {{ with .TableOfContents }}
+      <aside class="post-toc">
+        <h2>Contents</h2>
+        {{ . }}
+      </aside>
+    {{ end }}
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{ partial "post-navigation.html" . }}
+</article>
+{{ end }}

@@ -4,7 +4,7 @@ Thank you for helping keep this project and its users safe. This document descri
 
 ## Supported Versions
 
-The following versions of `aboutme` are currently supported with security updates:
+The following versions of `wigglep1ne.github.io` are currently supported with security updates:
 
 | Version | Supported |
 | ------: | :-------: |

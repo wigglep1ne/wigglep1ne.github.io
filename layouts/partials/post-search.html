@@ -1,0 +1,87 @@
+{{ $searchIndex := slice }}
+{{ range where .Site.RegularPages "Section" "publications" }}
+  {{ $searchIndex = $searchIndex | append (dict "title" .LinkTitle "url" .RelPermalink "summary" (.Summary | plainify) "content" .Plain) }}
+{{ end }}
+
+<section class="post-search" data-post-search>
+  <form role="search" data-post-search-form>
+    <label for="post-search-input">Search publications</label>
+    <input id="post-search-input" class="post-search-input" type="search" placeholder="Search by title or content" autocomplete="off" data-post-search-input>
+  </form>
+  <div class="post-search-results" data-post-search-results hidden></div>
+</section>
+<script type="application/json" id="post-search-index">{{ $searchIndex | jsonify | safeJS }}</script>
+<script>
+  (function(){
+    const search = document.querySelector('[data-post-search]');
+    const indexElement = document.getElementById('post-search-index');
+    if (!search || !indexElement) return;
+
+    const input = search.querySelector('[data-post-search-input]');
+    const searchForm = search.querySelector('[data-post-search-form]');
+    const results = search.querySelector('[data-post-search-results]');
+    const listing = document.querySelector('[data-post-listing]');
+    const pagination = document.querySelector('[data-post-pagination]');
+    let posts = [];
+
+    try { posts = JSON.parse(indexElement.textContent || '[]'); }
+    catch { return; }
+
+    function renderResults(){
+      const query = input.value.trim().toLocaleLowerCase();
+      results.replaceChildren();
+
+      if (!query) {
+        results.hidden = true;
+        if (listing) listing.hidden = false;
+        if (pagination) pagination.hidden = false;
+        return;
+      }
+
+      const matches = posts.filter(function(post){
+        const searchableText = [post.title, post.summary, post.content].join(' ').toLocaleLowerCase();
+        return searchableText.includes(query);
+      });
+
+      if (listing) listing.hidden = true;
+      if (pagination) pagination.hidden = true;
+      results.hidden = false;
+
+      const count = document.createElement('p');
+      count.className = 'post-search-count';
+      count.textContent = matches.length + (matches.length === 1 ? ' publication found' : ' publications found');
+      results.appendChild(count);
+
+      if (!matches.length) {
+        const empty = document.createElement('p');
+        empty.className = 'post-search-empty';
+        empty.textContent = 'No publications match that search.';
+        results.appendChild(empty);
+        return;
+      }
+
+      matches.forEach(function(post){
+        const result = document.createElement('article');
+        result.className = 'post-search-result';
+
+        const title = document.createElement('h2');
+        const link = document.createElement('a');
+        link.href = post.url;
+        link.textContent = post.title;
+        title.appendChild(link);
+        result.appendChild(title);
+
+        if (post.summary) {
+          const summary = document.createElement('p');
+          summary.textContent = post.summary;
+          result.appendChild(summary);
+        }
+
+        results.appendChild(result);
+      });
+    }
+
+    searchForm.addEventListener('submit', function(event){ event.preventDefault(); });
+    input.addEventListener('input', renderResults);
+  })();
+</script>

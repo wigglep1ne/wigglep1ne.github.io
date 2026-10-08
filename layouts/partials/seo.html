@@ -1,0 +1,33 @@
+<meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description | default .Site.Params.author }}{{ end }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}">
+<meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description | default .Site.Params.author }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}">
+<meta name="twitter:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description | default .Site.Params.author }}{{ end }}">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ if .IsHome }}Person{{ else }}WebPage{{ end }}",
+  "name": "{{ .Site.Params.author }}",
+  "url": "{{ .Permalink }}",
+  {{ if .IsHome }}
+  "email": "{{ .Site.Params.email }}",
+  "sameAs": [
+    {{ with .Site.Params.github }}"{{ . }}"{{ end }}{{ if and .Site.Params.github .Site.Params.linkedin }},{{ end }}
+    {{ with .Site.Params.linkedin }}"{{ . }}"{{ end }}{{ if and .Site.Params.linkedin .Site.Params.twitter }},{{ end }}
+    {{ with .Site.Params.twitter }}"{{ . }}"{{ end }}
+  ]
+  {{ end }}
+}
+</script>

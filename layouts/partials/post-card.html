@@ -1,0 +1,9 @@
+<article class="post-card">
+  <p class="post-card-meta">
+    {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{ end }}
+    {{ if .Draft }}<span class="post-draft">Draft</span>{{ end }}
+  </p>
+  <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+  {{ with .Summary }}<p>{{ . | plainify }}</p>{{ end }}
+  {{ partial "post-taxonomies.html" . }}
+</article>

@@ -1,6 +1,6 @@
-# Contributing to Graduation Project
+# Contributing to About me (ime) Project
 
-Thank you for considering contributing to the Graduation Project! Contributions are welcome and greatly appreciated. By contributing, you help make this project better for everyone.
+Thank you for considering contributing to the About me (ime) Project! Contributions are welcome and greatly appreciated. By contributing, you help make this project better for everyone.
 
 ## How to Contribute
 
@@ -13,7 +13,7 @@ Start by forking the repository to your GitHub account. This creates a copy of t
 Clone your forked repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/your-username/wigglep1ne.git
+git clone https://github.com/your-username/your-repository.git
 ```
 
 ### 3. Create a Branch

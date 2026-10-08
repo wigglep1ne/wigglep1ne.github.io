@@ -1,0 +1,8 @@
+{{ $paginator := .paginator }}
+{{ if gt $paginator.TotalPages 1 }}
+  <nav class="post-pagination" data-post-pagination aria-label="Publications pagination">
+    {{ with $paginator.Prev }}<a rel="prev" href="{{ .URL }}">← Previous</a>{{ end }}
+    <span>Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ with $paginator.Next }}<a rel="next" href="{{ .URL }}">Next →</a>{{ end }}
+  </nav>
+{{ end }}
