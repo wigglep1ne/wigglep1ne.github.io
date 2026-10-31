@@ -40,7 +40,7 @@
         <button type="submit" data-submit-button>Send Message</button>
       </form>
       <div id="contact-toast" class="contact-toast" role="status" aria-live="polite" hidden></div>
-      <script src="https://cdn.jsdelivr.net/npm/openpgp@6.3.1/dist/openpgp.min.js" integrity="sha384-b0f9a8ee91884efd7f5f806ae69e276a36c9646503de7a16947c2b8a10c1c09f3b6bb0d3bbbb12afaba3f81e6dfca03e" crossorigin="anonymous" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/openpgp@6.3.1/dist/openpgp.min.js" integrity="sha384-sPmo7pGITv1/X4Bq5p4najbJZGUD3noWlHwrihDBwJ87a7DTu7sSr6uj+B5t/KA+" crossorigin="anonymous" defer></script>
       <script>
         (function(){
           const form = document.getElementById('contact-form');
@@ -88,18 +88,14 @@
             form.setAttribute('aria-busy', 'true');
 
             try {
-              const payload = Object.fromEntries(new FormData(form));
+              let payload = Object.fromEntries(new FormData(form));
               if (encryptionCheckbox.checked) {
                 submitButton.textContent = 'Encrypting...';
-                const encryptedSubmission = await encryptMessage(JSON.stringify({
-                  name: payload.name,
-                  email: payload.email,
-                  subject: payload.subject,
-                  message: payload.message
-                }, null, 2));
-                Object.keys(payload).forEach(function(field){ delete payload[field]; });
-                payload.encrypted = true;
-                payload.message = encryptedSubmission;
+                const encryptedPayload = {};
+                for (const field of ['name', 'email', 'subject', 'message']) {
+                  encryptedPayload[field] = await encryptMessage(payload[field] || '');
+                }
+                payload = encryptedPayload;
               }
 
               submitButton.textContent = 'Sending...';

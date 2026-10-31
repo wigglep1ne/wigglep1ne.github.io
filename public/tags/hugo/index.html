@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en-us">
+<head><script src="/~lbenicio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=~lbenicio/livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Hugo · Leonardo Benicio | About me</title>
+<link rel="shortcut icon" href="http://localhost:1313/~lbenicio/static/favicon/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="http://localhost:1313/~lbenicio/static/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/~lbenicio/static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/~lbenicio/static/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/~lbenicio/static/favicon/apple-touch-icon.png">
+<link rel="manifest" href="http://localhost:1313/~lbenicio/static/favicon/site.webmanifest">
+<meta name="description" content="Leonardo Benicio — Computer Scientist at IME-USP">
+<link rel="canonical" href="http://localhost:1313/~lbenicio/tags/hugo/">
+<meta name="robots" content="index, follow">
+
+
+<meta property="og:title" content="Hugo · Leonardo Benicio | About me">
+<meta property="og:description" content="Leonardo Benicio — Computer Scientist at IME-USP">
+<meta property="og:url" content="http://localhost:1313/~lbenicio/tags/hugo/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Leonardo Benicio | About me">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hugo · Leonardo Benicio | About me">
+<meta name="twitter:description" content="Leonardo Benicio — Computer Scientist at IME-USP">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Leonardo Benicio",
+  "url": "http:\/\/localhost:1313\/~lbenicio\/tags\/hugo\/",
+  
+}
+</script>
+
+
+<script defer src="https://analytics.4686189.xyz/script.js" data-website-id="538d347a-5581-4faf-a235-e7f18c08234b"></script>
+
+
+<style>
+  :root { --bg: #fff; --fg: #222; }
+  .dark { --bg: #1a1a1a; --fg: #eee; }
+</style>
+<script>
+  (function(){const t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');})();
+</script>
+
+<link rel="stylesheet" href="/~lbenicio/assets/css/main.min.3cf9bf8d9be995d3fb44c0984de9c820e0b57857202274229fe996fb21d73d61.css" integrity="sha256-PPm/jZvpldP7RMCYTenIIOC1eFcgInQin&#43;mW&#43;yHXPWE=">
+
+</head>
+<body>
+  <header>
+  <nav>
+    <a href="http://localhost:1313/~lbenicio/" class="brand">Leonardo Benicio</a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="http://localhost:1313/~lbenicio/">Home</a>
+      <a href="http://localhost:1313/~lbenicio/about">About</a>
+      <a href="/~lbenicio/posts/">Posts</a>
+      <a href="http://localhost:1313/~lbenicio/contact">Contact</a>
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">☀</button>
+    </div>
+  </nav>
+</header>
+
+  <main>
+    
+<section class="taxonomy-page">
+  <nav class="post-submenu" aria-label="Posts">
+  <a href="/~lbenicio/posts/">Posts</a>
+  <a href="/~lbenicio/categories/">Categories</a>
+  <a href="/~lbenicio/tags/">Tags</a>
+</nav>
+
+  
+
+  
+
+
+<section class="post-search" data-post-search>
+  <form role="search" data-post-search-form>
+    <label for="post-search-input">Search posts</label>
+    <input id="post-search-input" class="post-search-input" type="search" placeholder="Search by title or content" autocomplete="off" data-post-search-input>
+  </form>
+  <div class="post-search-results" data-post-search-results hidden></div>
+</section>
+<script type="application/json" id="post-search-index">[{"content":"Why keep a small site? A personal site should make it easy to publish ideas without adding unnecessary machinery. The first version of this site keeps the content in Markdown and lets Hugo build the pages.\nFewer moving parts Static content is easy to version, review, and move between hosts. That simplicity leaves more attention for the writing itself.\nRoom to grow Categories, tags, search, and post navigation provide useful structure while the collection is still small.\nWhat comes next This draft is a placeholder for a longer note about the tools and decisions behind the site.\n","summary":"A draft note about shaping a simple, searchable space for technical writing.","title":"A Small Note on Building This Site","url":"/~lbenicio/posts/draft-post/"}]</script>
+<script>
+  (function(){
+    const search = document.querySelector('[data-post-search]');
+    const indexElement = document.getElementById('post-search-index');
+    if (!search || !indexElement) return;
+
+    const input = search.querySelector('[data-post-search-input]');
+    const searchForm = search.querySelector('[data-post-search-form]');
+    const results = search.querySelector('[data-post-search-results]');
+    const listing = document.querySelector('[data-post-listing]');
+    const pagination = document.querySelector('[data-post-pagination]');
+    let posts = [];
+
+    try { posts = JSON.parse(indexElement.textContent || '[]'); }
+    catch { return; }
+
+    function renderResults(){
+      const query = input.value.trim().toLocaleLowerCase();
+      results.replaceChildren();
+
+      if (!query) {
+        results.hidden = true;
+        if (listing) listing.hidden = false;
+        if (pagination) pagination.hidden = false;
+        return;
+      }
+
+      const matches = posts.filter(function(post){
+        const searchableText = [post.title, post.summary, post.content].join(' ').toLocaleLowerCase();
+        return searchableText.includes(query);
+      });
+
+      if (listing) listing.hidden = true;
+      if (pagination) pagination.hidden = true;
+      results.hidden = false;
+
+      const count = document.createElement('p');
+      count.className = 'post-search-count';
+      count.textContent = matches.length + (matches.length === 1 ? ' post found' : ' posts found');
+      results.appendChild(count);
+
+      if (!matches.length) {
+        const empty = document.createElement('p');
+        empty.className = 'post-search-empty';
+        empty.textContent = 'No posts match that search.';
+        results.appendChild(empty);
+        return;
+      }
+
+      matches.forEach(function(post){
+        const result = document.createElement('article');
+        result.className = 'post-search-result';
+
+        const title = document.createElement('h2');
+        const link = document.createElement('a');
+        link.href = post.url;
+        link.textContent = post.title;
+        title.appendChild(link);
+        result.appendChild(title);
+
+        if (post.summary) {
+          const summary = document.createElement('p');
+          summary.textContent = post.summary;
+          result.appendChild(summary);
+        }
+
+        results.appendChild(result);
+      });
+    }
+
+    searchForm.addEventListener('submit', function(event){ event.preventDefault(); });
+    input.addEventListener('input', renderResults);
+  })();
+</script>
+
+
+  <header class="post-section-header">
+    <p class="post-kicker">Browse posts</p>
+    <h1>Hugo</h1>
+  </header>
+
+  <div class="taxonomy-list">
+    
+  </div>
+</section>
+
+  </main>
+  <footer>
+  
+  
+  
+  
+  
+  
+  <nav style="display:flex;justify-content:center;gap:1rem;margin-bottom:.5rem;">
+    
+    <a href="https://github.com/lbenicio" target="_blank" rel="noopener noreferrer" style="color:var(--fg);text-decoration:none;font-size:.85rem;">GitHub</a>
+    
+    <a href="https://linkedin.com/in/leonardo-benicio" target="_blank" rel="noopener noreferrer" style="color:var(--fg);text-decoration:none;font-size:.85rem;">LinkedIn</a>
+    
+    <a href="https://twitter.com/lbenicio_" target="_blank" rel="noopener noreferrer" style="color:var(--fg);text-decoration:none;font-size:.85rem;">Twitter</a>
+    
+    <a href="https://reddit.com/user/lbenicio" target="_blank" rel="noopener noreferrer" style="color:var(--fg);text-decoration:none;font-size:.85rem;">Reddit</a>
+    
+  </nav>
+  
+  <p>&copy; 2026 Leonardo Benicio. All rights reserved.</p>
+</footer>
+
+  <script>
+    function toggleTheme(){
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+      updateBtn();
+    }
+    function updateBtn(){
+      const btn = document.querySelector('.theme-btn');
+      if (btn) btn.textContent = document.documentElement.classList.contains('dark') ? '☀' : '☾';
+    }
+    updateBtn();
+  </script>
+</body>
+</html>
